@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanh toán</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* CARD */
+.card {
+    background: #1e293b;
+    padding: 25px;
+    width: 320px;
+    border-radius: 20px;
+    text-align: center;
+    color: #e5e7eb;
+}
+
+/* TITLE */
+h2 {
+    margin-bottom: 20px;
+}
+
+/* TEXT */
+p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* LINE */
+hr {
+    border: none;
+    height: 1px;
+    background: #475569;
+    margin: 15px 0;
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    background: #fb7185;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #f43f5e;
+}
+
+/* LINK STK */
+.stk {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+/* NOTE */
+.note {
+    color: #facc15;
+    font-weight: bold;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Thanh toán</h2>
+
+    <p><b>Gói:</b> <span id="goi"></span></p>
+    <p><b>Số tiền:</b> <span id="tien"></span></p>
+
+    <hr>
+
+    <p><b>STK:</b> <span class="stk">0588807300000</span></p>
+    <p><b>Chủ TK:</b> Cao Minh Duy</p>
+
+    <p><b>Nội dung:</b> <span id="noidung"></span></p>
+
+    <p class="note">
+        ⚠️ Khi chuyển khoản vui lòng nhập kèm số điện thoại của bạn
+    </p>
+
+    <button onclick="paid()">Tôi đã thanh toán</button>
+</div>
+
+<script>
+// LẤY GÓI
+const params = new URLSearchParams(window.location.search);
+const goi = params.get("goi") || "Proxy Ngày";
+
+// MAP GIÁ
+const prices = {
+    "Proxy Ngày": "10.000đ",
+    "Proxy Tuần": "40.000đ",
+    "Proxy Tháng": "60.000đ",
+    "Proxy Vĩnh viễn": "300.000đ"
+};
+
+// HIỂN THỊ
+document.getElementById("goi").innerText = goi;
+document.getElementById("tien").innerText = prices[goi] || "Không rõ";
+
+// RANDOM NỘI DUNG CK (MDUYK + số)
+function randomCode() {
+    return "MDUYK" + Math.floor(100 + Math.random() * 900);
+}
+document.getElementById("noidung").innerText = randomCode();
+
+// BUTTON
+function paid() {
+    alert("Nếu quên ghi số điện thoại, liên hệ admin: 0328033706");
+}
+</script>
+
+</body>
+</html>
